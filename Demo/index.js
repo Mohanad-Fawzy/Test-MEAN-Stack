@@ -5,4 +5,4 @@ function power(number , power){
     }
     return y
 }
-console.log(power(5,2))
+setTimeout(() => console.log(power(5,2)),2000)
