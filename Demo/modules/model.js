@@ -1,7 +1,7 @@
-function userInfo (name,isGay) {
-    return{
-        name: name,
-        gay: isGay
-    }
+function userInfo(name, isGay) {
+  return {
+    name: name,
+    gay: isGay,
+  };
 }
-module.exports = {userInfo}
+module.exports = { userInfo };
