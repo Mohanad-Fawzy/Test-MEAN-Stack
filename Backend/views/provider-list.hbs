@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+</html>
+
+<section class="page-section" id="provider list">
+            <div class="container px-4 px-lg-5">
+                <h2 class="text-center mt-0">At Your Service</h2>
+                <hr class="divider" />
+                <div class="table-responsive">
+
+                    <table class="table table-hover table-bordered">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Positoin</th>
+                                <th scope="col">Company name</th>
+                                <th scope="col">Company address</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each providers}}
+                            <tr>
+                                <td scope="row">{{id}}</td>
+                                <td scope="row">{{name}}</td>
+                                <td scope="row">{{position}}</td>
+                                <td scope="row">{{company.name}}</td>
+                                <td scope="row">{{company.address}}</td>
+                                <td scope="row">
+                                <a href="/providers/details/{{id}}" class="btn btn-info btn-sm">More info</a>
+                                <a href="/providers/edit/{{id}}" class="btn btn-secondary btn-sm">Edit</a>
+                                <a href="/providers/delete/{{id}}" class="btn btn-danger btn-sm">Delete</a></td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </section>
