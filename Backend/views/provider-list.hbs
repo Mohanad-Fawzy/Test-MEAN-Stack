@@ -22,7 +22,6 @@
                 </div>
             </div>
     </nav>
-    <img src="../public/Guide me to the light 2 1.0.png" alt="" sizes="1980">
     <section class="page-section" id="service">
             <div class="container px-4 px-lg-5">
                 <h1 class="text-center mt-0">At Your Service</h1>
@@ -51,9 +50,9 @@
                                 <td scope="row">{{company.address}}</td>
                                 <td scope="row">{{salary}}</td>
                                 <td scope="row">
-                                <a href="/providers/details/{{id}}" class="btn btn-info btn-sm">More info</a>
+                                <a href="provider/details/{{id}}" class="btn btn-info btn-sm">More info</a>
                                 <a href="/providers/edit/{{id}}" class="btn btn-secondary btn-sm">Edit</a>
-                                <a href="/providers/delete/{{id}}" class="btn btn-danger btn-sm">Delete</a></td>
+                                <a href="/provider/delete/{{id}}" class="btn btn-danger btn-sm">Delete</a></td>
                             </tr>
                             {{/each}}
                         </tbody>

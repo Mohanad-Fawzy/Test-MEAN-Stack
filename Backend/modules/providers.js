@@ -7,6 +7,8 @@ var providers = [
     company: {
       name: "Google",
       address: "Asafra",
+      email: "Google@gmail.com",
+      description: "Gooooogle",
     },
   },
   {
@@ -17,6 +19,8 @@ var providers = [
     company: {
       name: "Microsoft",
       address: "Asafra",
+      email: "@gmail.com",
+      description: "FCK Apple",
     },
   },
   {
@@ -27,6 +31,8 @@ var providers = [
     company: {
       name: "IBM",
       address: "Asafra",
+      email: "@gmail.com",
+      description: "MBI",
     },
   },
   {
@@ -37,6 +43,8 @@ var providers = [
     company: {
       name: "Beesoft",
       address: "SediBeshr",
+      email: "@gmail.com",
+      description: "The greatest software ever",
     },
   },
   {
@@ -47,6 +55,8 @@ var providers = [
     company: {
       name: "Al tawheed we el nour",
       address: "Not found",
+      email: "@gmail.com",
+      description: "??!",
     },
   },
   {
@@ -57,6 +67,8 @@ var providers = [
     company: {
       name: "The Wekala",
       address: "Sand station",
+      email: "@gmail.com",
+      description: "The 3 with 10",
     },
   },
 ];

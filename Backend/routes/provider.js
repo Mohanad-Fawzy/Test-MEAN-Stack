@@ -4,4 +4,5 @@ const providerController = require("../controllers/provider");
 
 router.get("/", providerController.list);
 
+router.get("/details/:id", providerController.details);
 module.exports = router;
