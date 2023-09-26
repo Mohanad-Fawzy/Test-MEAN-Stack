@@ -10,4 +10,8 @@ router.get("/edit/:id", providerController.edit);
 
 router.post("/update/:id", providerController.update);
 
+router.get("/add-form", providerController.addForm);
+
+router.post("/add", providerController.add);
+
 module.exports = router;

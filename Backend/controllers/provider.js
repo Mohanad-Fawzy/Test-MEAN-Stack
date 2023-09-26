@@ -40,3 +40,28 @@ module.exports.update = function (req, res) {
     title: `${provider.company.name} update`,
   });
 };
+
+module.exports.addForm = function (req, res) {
+  res.render("provider-add-form", { title: "Add new provider" });
+};
+
+module.exports.add = function (req, res) {
+  let min = 100;
+  let max = 999;
+  let id = Math.floor(Math.random() * (max - min) + min);
+
+  let provider = {
+    id: id,
+    name: req.body.firstname,
+    position: req.body.position,
+    salary: req.body.salary,
+    company: {
+      name: req.body.company_name,
+      email: req.body.email,
+      address: req.body.address,
+      description: req.body.description,
+    },
+  };
+  providers.push(provider);
+  res.render("provider-update", { title: "Added" });
+};
