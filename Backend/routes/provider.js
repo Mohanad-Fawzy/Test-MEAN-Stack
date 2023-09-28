@@ -14,4 +14,6 @@ router.get("/add-form", providerController.addForm);
 
 router.post("/add", providerController.add);
 
+router.get("/delete/:name", providerController.delete);
+
 module.exports = router;

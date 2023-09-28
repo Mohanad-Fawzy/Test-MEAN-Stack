@@ -65,3 +65,14 @@ module.exports.add = function (req, res) {
   providers.push(provider);
   res.render("provider-update", { title: "Added" });
 };
+
+module.exports.delete = function (req, res) {
+  let name = req.params.name;
+  let provider = providers.find((provider) => provider.name == name);
+  res.render("provider-delete", {
+    title: "deleted",
+    company: provider.company,
+  });
+  let index = providers.indexOf(provider);
+  providers.splice(index, 1);
+};
