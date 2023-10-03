@@ -1,5 +1,18 @@
 const providers = require("../modules/providers");
 
+function isValid(id) {
+  return providers.find((provider) => provider.id == id);
+}
+
+function makeUniqueID() {
+  const min = 100;
+  const max = 999;
+  do {
+    var id = Math.floor(Math.random() * (max - min) + min);
+  } while (isValid);
+  return id;
+}
+
 module.exports.list = function (req, res) {
   res.render("provider-list", { title: "Services", providers: providers });
 };
@@ -46,12 +59,8 @@ module.exports.addForm = function (req, res) {
 };
 
 module.exports.add = function (req, res) {
-  let min = 100;
-  let max = 999;
-  let id = Math.floor(Math.random() * (max - min) + min);
-
   let provider = {
-    id: id,
+    id: makeUniqueID(),
     name: req.body.firstname,
     position: req.body.position,
     salary: req.body.salary,

@@ -8,10 +8,10 @@ router.get("/provider", mainController.readAll);
 
 router.get("/provider/:id", mainController.readOne);
 
-router.put("provider", mainController.update);
+router.put("/provider/:id", mainController.update);
 
-router.delete("provider/:id", mainController.delete);
+router.delete("/provider/:id", mainController.delete);
 
-router.delete("provider/:id", mainController.deleteAll);
+router.delete("/provider/:id", mainController.deleteAll);
 
 module.exports = router;
