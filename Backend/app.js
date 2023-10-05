@@ -9,6 +9,8 @@ var usersRouter = require("./routes/users");
 var providerRouter = require("./routes/provider");
 var apiRouter = require("./api/routes/main.routs");
 
+const db = require("./api/db/db");
+
 var app = express();
 
 // view engine setup
