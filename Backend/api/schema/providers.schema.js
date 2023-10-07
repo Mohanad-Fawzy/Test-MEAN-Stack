@@ -10,8 +10,7 @@ const companySchema = new mongoose.Schema({
 const providerSchema = new mongoose.Schema({
   name: { type: String, required: true },
   position: { type: String, required: true },
-  salary: { type: String, required: true },
-  company: { companySchema },
+  company: { companySchema, type: Object, required: true },
 });
 
 module.exports = { providerSchema, companySchema };

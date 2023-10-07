@@ -1,4 +1,11 @@
 const providers = require("../modules/provider.modules");
+const Provider = require("../db/db");
+const { ObjectId } = require("mongodb");
+
+function errorHandeler(res, err) {
+  res.status(404);
+  res.send(`Something went wrong ${err}`);
+}
 
 function isListEmpty(obj) {
   return !obj || obj.length == 0 || Object.keys.obj == 0;
@@ -18,55 +25,109 @@ function makeUniqueID() {
 }
 
 module.exports.create = function (req, res) {
-  let provider = {
-    id: makeUniqueID(),
-    name: req.body.firstname,
-    position: req.body.position,
-    salary: req.body.salary,
-    company: {
-      name: req.body.company.company_name,
-      email: req.body.company.email,
-      address: req.body.company.address,
-      description: req.body.company.description,
-    },
-  };
-  providers.push(provider);
-  res.status(200);
-  res.send(provider);
+  try {
+    var provider = req.body;
+    Provider.create(provider)
+      .then((result) => {
+        res.status(201);
+        res.send(result);
+      })
+      .catch((err) => errorHandeler(res, err));
+  } catch (err) {
+    errorHandeler(res, err);
+  }
 };
 
 module.exports.readAll = function (req, res) {
-  res.status(200);
-  res.send(providers);
+  try {
+    Provider.find()
+      .then((result) => {
+        if (isListEmpty(result)) {
+          res.status(400);
+          res.send("No data found");
+        } else {
+          res.status(200);
+          res.send(result);
+        }
+      })
+      .catch((err) => errorHandeler(res, err));
+  } catch (err) {
+    errorHandeler(res, err);
+  }
 };
 
 module.exports.readOne = function (req, res) {
-  let id = req.params.id;
-  let provider = providers.find((provider) => provider.id == id);
-  res.status(200);
-  res.send(provider);
+  try {
+    let id = new ObjectId(req.params.id);
+    Provider.find({ _id: id })
+      .then((result) => {
+        if (isListEmpty(result)) {
+          res.status(400);
+          res.send("No match found");
+        } else {
+          res.status(200);
+          res.send(result);
+        }
+      })
+      .catch((err) => errorHandeler(res, err));
+  } catch (err) {
+    errorHandeler(res, err);
+  }
 };
 
 module.exports.update = function (req, res) {
-  let id = req.params.id;
-  let provider = providers.find((provider) => provider.id == id);
-  provider.name = req.body.name;
-  provider.position = req.body.position;
-  provider.company.name = req.body.company.company_name;
-  provider.company.email = req.body.company.email;
-  provider.company.address = req.body.company.address;
-  provider.company.description = req.body.company.description;
-  res.status(200);
-  res.send(provider);
+  try {
+    var provider = req.body;
+    var id = new ObjectId(req.params.id);
+    Provider.findOneAndUpdate({ _id: id }, provider, { new: true })
+      .then((result) => {
+        if (isListEmpty(result)) {
+          res.status(400);
+          res.send("Data is invalid");
+        } else {
+          res.status(201);
+          res.send(result);
+        }
+      })
+      .catch((err) => errorHandeler(res, err));
+  } catch (err) {
+    errorHandeler(res, err);
+  }
 };
 
 module.exports.delete = function (req, res) {
-  let id = req.params.id;
-  let provider = providers.find((provider) => provider.id == id);
-  res.status(200);
-  res.send(provider);
-  let index = providers.indexOf(provider);
-  providers.splice(index, 1);
+  try {
+    let id = new ObjectId(req.params.id);
+    Provider.findOneAndDelete({ _id: id })
+      .then((result) => {
+        if (isListEmpty(result)) {
+          res.status(400);
+          res.send("Nothing to delete");
+        } else {
+          res.status(200);
+          res.send(result);
+        }
+      })
+      .catch((err) => errorHandeler(res, err));
+  } catch (err) {
+    errorHandeler(res, err);
+  }
 };
 
-module.exports.deleteAll = function (req, res) {};
+module.exports.deleteAll = function (req, res) {
+  try {
+    Provider.deleteMany({})
+      .then((result) => {
+        if (result.deletedCount === 0) {
+          res.status(400);
+          res.send("Nothing to delete");
+        } else {
+          res.status(200);
+          res.send(`All providers have been deleted \n ${result}`);
+        }
+      })
+      .catch((err) => errorHandeler(res, err));
+  } catch (err) {
+    errorHandeler(res, err);
+  }
+};
