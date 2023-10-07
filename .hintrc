@@ -11,6 +11,12 @@
           "text-align: -webkit-match-parent"
         ]
       }
+    ],
+    "axe/forms": [
+      "default",
+      {
+        "label": "off"
+      }
     ]
   }
 }

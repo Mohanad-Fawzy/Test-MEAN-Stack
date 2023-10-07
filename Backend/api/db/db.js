@@ -10,7 +10,7 @@ const c1 = mongoose
     useUnifiedTopology: true,
   })
   .then((result) => {
-    console.log("connected");
+    console.log("connected to the data base");
   })
   .catch((err) => console.log(err));
 
