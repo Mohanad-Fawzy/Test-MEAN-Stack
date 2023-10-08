@@ -7,18 +7,29 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Bee soft';
-  red: String = 'color:red';
-  isGay: String = 'Lets see if you are gay';
-  gayChecker() {
-    let x: number = Math.floor(Math.random() * (100 - 50) + 50);
-    if (x % 3 == 0) {
-      this.isGay = 'you are not gay';
-    } else {
-      this.isGay = 'you are gay';
-    }
+  name?: String;
+  age?: number;
+  salary?: number;
+  addNewEmployee() {
+    var e: employee = new employee(this.name, this.age, this.salary);
+    employee.addEmployee(e);
+    var lsit = employee.viewEmployees();
   }
-  sorryT: String = '';
-  sorry(val: String) {
-    this.sorryT = val;
+}
+class employee {
+  name?: String;
+  age?: number;
+  salary?: number;
+  private static list: employee[];
+  constructor(n?: String, a?: number, s?: number) {
+    this.name = n;
+    this.age = a;
+    this.salary = s;
+  }
+  static addEmployee(e: employee) {
+    this.list.push(e);
+  }
+  static viewEmployees(): employee[] {
+    return this.list;
   }
 }
